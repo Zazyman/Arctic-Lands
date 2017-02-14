@@ -1,0 +1,46 @@
+.zone {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    position: inherit;
+    float: left;
+    z-index: 10;
+}
+#surround {
+    border: 3px solid black;
+    padding: 10px 10px 10px 10px;
+    position: static;
+    z-index: 1;
+    background: gray;
+}
+
+#mapwrapper {
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    border: 3px solid black;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#wrapperEW {
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    align-items: center;
+}
+#wrapper {
+     padding: 20px 20px 20px 20px;
+     display: flex;
+ }
+
+#section2 {
+    flex: 1;
+    border: 1px solid black;
+    background: lightblue;
+    margin: 0px 10px 0px 10px;
+}
+
+.directionbutton {
+    width: 50px;
+    height: 50px;
+    margin: 10px 10px 10px 10px;

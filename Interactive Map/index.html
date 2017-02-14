@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="map.css">
+    <script src="map.js"></script>
+    <script src="user_creation.js"></script>
+    <script src="user_movement.js"></script>
+    <title>Arctic Land Map</title>
+</head>
+<body onload="mapcreate()">
+<article>
+    <section id="wrapper">
+        <section id="mapwrapper">
+            <button class="directionbutton" id="butnorth" onclick="movedirection(0,-1)">North</button>
+            <section id="wrapperEW">
+                <button class="directionbutton" id="butwest" onclick="movedirection(-1,0)">West </button>
+                <section id="surround">
+                    <section id="start">
+                    </section>
+                </section>
+                <button class="directionbutton" id="buteast" onclick="movedirection(1,0)">East</button>
+            </section>
+            <button class="directionbutton" id="butsouth" onclick="movedirection(0,1)">South</button>
+        </section>
+        <aside id="section2">
+            <button onclick="playerlocal()" id="newgame">New Game</button>
+            Image of zone when clicked and information about the zone
+        </aside>
+    </section>
+</article>
+</body>
+</html>
