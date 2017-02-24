@@ -12,20 +12,14 @@ function directional(){
 function removelocation() {
     var userlocation = ((((user[username1].yaxis - 1) * mapsize) + user[username1].xaxis)-1);
     var ident = "zone" + userlocation;
-    if (map[userlocation].environ > 0) {
-        var colour = "red"
-    }
-    else {
-        var colour = "green"
-    }
-    document.getElementById(ident).style.background = colour;
+    document.getElementById(ident).innerHTML = "";
 }
 
 //This function creates the player location in the new zone
 function newlocation() {
     userlocation = ((((user[username1].yaxis - 1) * mapsize) + user[username1].xaxis)-1);
     ident = "zone" + userlocation;
-    document.getElementById(ident).style.background = "yellow";
+    document.getElementById(ident).innerHTML = "X";
 }
 
 //This function moves the player direction when the button is pressed

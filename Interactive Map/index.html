@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="map.css">
+    <script src="infobox_text.js"></script>
     <script src="map.js"></script>
     <script src="user_creation.js"></script>
     <script src="user_movement.js"></script>
+    <script src="onload.js"></script>
+    <script src="zone_info.js"></script>
     <title>Arctic Land Map</title>
 </head>
-<body onload="mapcreate()">
+<body onload="onloading()">
+<header>
+    <img src="images\Banner.png" id="headingimage">
+</header>
+<nav id="navwindow">
+    The navigator window with stuff in it
+</nav>
 <article>
     <section id="wrapper">
         <section id="mapwrapper">
@@ -23,10 +32,14 @@
             </section>
             <button class="directionbutton" id="butsouth" onclick="movedirection(0,1)">South</button>
         </section>
-        <aside id="section2">
-            <button onclick="playerlocal()" id="newgame">New Game</button>
-            Image of zone when clicked and information about the zone
-        </aside>
+       <section id="infowrapper">
+            <aside id="zoneinfo">
+                Testing window 1
+            </aside>
+            <aside id="infowindow">
+                Testing info window
+            </aside>
+        </section>
     </section>
 </article>
 </body>
