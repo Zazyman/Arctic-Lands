@@ -18,3 +18,25 @@ function playerlocal() {
     directional();
     playercount += 1;
 }
+
+//This function will create some random player objects
+function NPCcreation(count) {
+    for (x = 0; x <= count; x++) {
+        user[playercount] = new user((Math.floor((Math.random() * mapsize) + 1)), (Math.floor((Math.random() * mapsize) + 1)), "Player-" + playercount);
+        playercount += 1;
+    }
+}
+
+var testingwriting = ""
+
+function npcmovement (){
+    testingwriting = "";
+    for (x=1; x<playercount; x++){
+        testingwriting += user[x].username+" at "+user[x].xaxis+", "+user[x].yaxis+"</br>";
+    }
+    document.getElementById("testing").innerHTML = testingwriting;
+}
+function testing(){
+    user[1].xaxis = (Math.floor((Math.random() * mapsize)+1));
+    npcmovement();
+}

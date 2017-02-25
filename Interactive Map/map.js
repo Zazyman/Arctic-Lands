@@ -1,5 +1,5 @@
 //This variable is the size of the map and will eventually become static but is required for testing for the correct size currently
-var mapsize=15;
+var mapsize=10;
 
 function map(xaxis,yaxis,environ, id) {
     this.xaxis = xaxis;
