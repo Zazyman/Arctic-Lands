@@ -7,7 +7,7 @@ function onloading(){
     //Creates the attributes of each zone, much of this can remain in the function but when the map size is static this can be replaced with static coding
     zoneattributes();
     //This creates NPCs as real players don't exist at this time
-    NPCcreation(2);
+    NPCcreation(12);
     //This is so that I can currently see all the NPC locations to cross reference
     npcmovement();
 }

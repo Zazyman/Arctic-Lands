@@ -29,5 +29,6 @@ function movedirection(xdir, ydir){
     user[username1].yaxis += ydir;
     newlocation();
     directional();
+    testing();
 }
 
