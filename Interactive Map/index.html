@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="map.css">
-    <script src="infobox_text.js"></script>
     <script src="map.js"></script>
     <script src="user_creation.js"></script>
     <script src="user_movement.js"></script>
     <script src="onload.js"></script>
     <script src="zone_info.js"></script>
+    <script src="items.js"></script>
     <title>Arctic Land Map</title>
 </head>
 <body onload="onloading()">
@@ -32,12 +32,16 @@
             </section>
             <button class="directionbutton" id="butsouth" onclick="movedirection(0,1)">South</button>
         </section>
+        <section id="actionwrapper">
+            Actions that can be performed will go here
+            <button id="searchbutton" onclick="searchbutton()">Search</button>
+        </section>
        <section id="infowrapper">
             <aside id="zoneinfo">
-                Testing window 1
+                Information when a zone is clicked on will appear here
             </aside>
             <aside id="infowindow">
-                Testing info window
+                Information about the zone will appear here on roll over
             </aside>
         </section>
     </section>

@@ -1,16 +1,24 @@
 //This variable is the size of the map and will eventually become static but is required for testing for the correct size currently
-var mapsize=12;
+var mapsize=4;
 
-function map(xaxis,yaxis,environ, id) {
+function map(xaxis,yaxis,environ, fitems, depleted, searchcount) {
+    //The x axis of the zone
     this.xaxis = xaxis;
+    //The y axis of the zone
     this.yaxis = yaxis;
+    //The enviornmental value of the zone (used to change the chances of items found)
     this.environ = environ;
-    this.id = id;
+    //This array shows the items on the ground currently
+    this.fitems = fitems;
+    //This detects if the zone is depleted or not
+    this.depleted = depleted;
+    //This counts the number of searches performed, eventually depleting the zone
+    this.searchcount = searchcount;
 }
 
 for (x=0;x<=mapsize;x++){
     for (y=0;y<=mapsize;y++) {
-        map[(((y-1)*mapsize)+x)-1] = new map(x, y, (Math.floor(Math.random() * 3)), (((y-1)*mapsize)+x));
+        map[(((y-1)*mapsize)+x)-1] = new map(x, y, (Math.floor(Math.random() * 3)), [], false, 0);
         }
     }
 

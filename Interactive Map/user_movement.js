@@ -1,4 +1,5 @@
-var username1 = "Player 1";
+//The main players username, this is different to the other user items as it is currently a single player game
+var username1 = playercount;
 
 //This function disables the directional buttons when you reach the edge of the map
 function directional(){

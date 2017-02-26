@@ -43,16 +43,15 @@
 #zoneinfo {
     flex: 1;
     border: 1px solid black;
-    width: 100%;
+    width: 98%;
     height: 70%;
     background: lightblue;
-    margin: 0px 10px 0px 10px;
 }
 /*The solid black border around the map and buttons*/
 #infowrapper {
     padding: 10px 10px 10px 10px;
     margin-left: 10px;
-    width: 60%;
+    width: 45%;
     display: flex;
     border: 3px solid black;
     flex-direction: column;
@@ -63,9 +62,8 @@
 #infowindow {
     height: 10%;
     border: 1px solid black;
-    width: 90%;
-    padding: 5% 5% 5% 5%;
-    margin: 2% 5% 2% 5%;
+    width: 98%;
+    margin:  5px 0px 5px 0px;
 }
 /* This is the heading image details*/
 #headingimage {
@@ -81,7 +79,23 @@
     rgba(170, 170, 170, 1)66%,
     rgba(255, 255, 255, 0)100%);
 }
-
+/*This is the red box at the bottom giving the location of all players currently*/
 #testing {
     border: 2px solid red;
+}
+/*This is the window where actions can occur*/
+#actionwrapper {
+    border: 2px solid black;
+    background: grey;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    align-content: center;
+    align-items: center;
+    padding: 2%;
+}
+/*This is the button pressed to search*/
+#searchbutton {
+    width: 100px;
 }
