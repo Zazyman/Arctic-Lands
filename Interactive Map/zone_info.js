@@ -10,6 +10,8 @@ var maplocstring = "";
 var playernames = "";
 //Used to show the items in the currently selected zone
 var mapitems = "";
+//Used to show images for each item
+var itemimages = [];
 
 function zoneattributes() {
     //This function assigns a listener to each zone on creation that detects if the mouse enters or leaves
@@ -76,7 +78,9 @@ function infobox(mpinfo){
     }
     playertest(mapvarselect2);
     document.getElementById('zoneinfo').innerHTML = "<strong>Zone: </strong>["+maplocstring+"]</br>"+
-        "<strong>Players: </strong>"+playernames+"</br><strong>Items: </strong>"+mapitems;
+        "<strong>Players: </strong>"+playernames+"</br><strong>Items: </strong>"+mapitems+'</br>';
+    //This function adds the images, it occurs after the innerHTML else it gets deleted
+    addimages();
 }
 
 function playertest(zone){
@@ -85,6 +89,33 @@ function playertest(zone){
         var playerloc = (((user[x].yaxis-1)*mapsize)+user[x].xaxis)-1;
         if (playerloc == zone) {
             playernames += user[x].username+", ";
+        }
+    }
+}
+//This is the option to add item images to the screen
+function addimages() {
+    //This cycles through the items on the zone
+    for (x=0;x<(map[mapvarselect2].fitems.length);x++){
+        //This make the zone item name into a single variable for ease
+        var testingname = map[mapvarselect2].fitems[x];
+        //This checks that the item name is a real item
+        if (typeof item[testingname] !== 'undefined'){
+            //If the item is real an image is created
+            var img = document.createElement("img");
+            //This image gets its picture from the item object
+            img.src = item[testingname].icon;
+            //The item is named with both the region and the point on the array that it exists
+            var imagename = mapvarselect2+"+"+x;
+            img.id = imagename;
+            document.getElementById('zoneinfo').appendChild(img);
+            document.getElementById(imagename).addEventListener("click", function () {
+                var idlength = this.id.indexOf("+");
+                var temparrayid = parseInt(this.id.slice(idlength));
+                var tempzoneid = parseInt(this.id.slice(0,idlength));
+                map[tempzoneid].fitems.splice(temparrayid, 1);
+                var tempmapid = ("zone"+tempzoneid);
+                document.getElementById(tempmapid).click();
+            });
         }
     }
 }

@@ -9,6 +9,7 @@
     <script src="onload.js"></script>
     <script src="zone_info.js"></script>
     <script src="items.js"></script>
+    <script src="image_stats.js"></script>
     <title>Arctic Land Map</title>
 </head>
 <body onload="onloading()">
@@ -33,8 +34,10 @@
             <button class="directionbutton" id="butsouth" onclick="movedirection(0,1)">South</button>
         </section>
         <section id="actionwrapper">
-            Actions that can be performed will go here
+            Actions that can be performed will go here <br />
             <button id="searchbutton" onclick="searchbutton()">Search</button>
+            <br />
+            <button id="removesearch" onclick="removesearch()">Remove</button>
         </section>
        <section id="infowrapper">
             <aside id="zoneinfo">

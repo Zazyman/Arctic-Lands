@@ -72,3 +72,10 @@ function searchcheckz(founditem){
         alert("You have found "+founditem);
     }
 }
+
+//This function is used to remove the most recent item
+function removesearch(){
+    var zonelocation = (((user[username1].yaxis-1)*mapsize)+user[username1].xaxis)-1;
+    map[zonelocation].fitems.pop();
+
+}
