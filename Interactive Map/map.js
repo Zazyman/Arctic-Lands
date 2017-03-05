@@ -1,5 +1,7 @@
 //This variable is the size of the map and will eventually become static but is required for testing for the correct size currently
-var mapsize=4;
+var mapsize=8;
+//This is the pixel size of each map part (dont forget to manually change the CSS property of .zone)
+var pixelsize=20;
 
 function map(xaxis,yaxis,environ, fitems, depleted, searchcount) {
     //The x axis of the zone
@@ -16,43 +18,62 @@ function map(xaxis,yaxis,environ, fitems, depleted, searchcount) {
     this.searchcount = searchcount;
 }
 
+function enviroment(name, items, colour){
+    this.name = name;
+    this.items = items;
+    this.colour = colour;
+}
+
+enviroment[0] = new enviroment("Snow", ["Snow", "Snow", "Snow", "Snow", "Snow", "Wood", "Wood", "ZZNone", "ZZNone", "ZZNone"], "lightgrey");
+enviroment[1] = new enviroment("Forest", ["Wood", "Wood", "Wood", "Wood", "Snow", "Snow", "ZZNone", "ZZNone", "ZZNone", "ZZNone"], "lightgreen");
+
 for (x=0;x<=mapsize;x++){
     for (y=0;y<=mapsize;y++) {
-        map[(((y-1)*mapsize)+x)-1] = new map(x, y, (Math.floor(Math.random() * 3)), [], false, 0);
+        map[(((y-1)*mapsize)+x)-1] = new map(x, y, (Math.floor(Math.random() * 2)), [], false, 0);
         }
     }
 
 function mapcreate() {
     for (i = 0; i < ((mapsize * mapsize)); i++) {
         //This if statement defines the image (background) depending on zone enviroment variable
-        if (map[i].environ > 0) {
-            var colour = "grey"
+
+        var colour = enviroment[map[i].environ].colour;
+        /*if (map[i].environ > 0) {
+            var colour = "lightgrey"
         }
         else {
             var colour = "lightgreen"
-        }
+        }*/
         //This var creates the x co-ordinate of the box
-        var padwidth = (map[i].xaxis * 20);
+        var padwidth = (map[i].xaxis * pixelsize);
         //This var creates the y co-ordinate of the box
-        var padheight = (map[i].yaxis * 20);
+        var padheight = (map[i].yaxis * pixelsize);
         //This creates a unique identifier for each HTML div
         var ident = ("zone" + i);
-        var div1 = document.createElement('div');
-        var att2 = document.createAttribute('id');
-        var node2 = document.createAttribute('onmouseleave');
-        att2.value = ident;
-        div1.setAttributeNode(att2);
-        var node = document.getElementById('start');
-        node.appendChild(div1);
-        document.getElementById(ident).setAttribute('class', 'zone');
-        document.getElementById(ident).style.background = colour;
-        document.getElementById(ident).style.left = padwidth + 'px';
-        document.getElementById(ident).style.top = padheight + 'px';
-        document.getElementById(ident).style.top = padheight + 'px';
+        $("#start").append("<div id='"+ident+"' class='zone'><img src='images/unexplored.png' id='unexplored"+i+"' class='mapimages'></div>");
+        $("#"+ident).css({"left":padwidth+"px","top":padheight+"px","background":colour});
+        $("#unexplored"+i).css("visibility", "hidden");
 
         //This creates a static div boarder around the map based on the map size to allow correct formating
-        var surround = ((mapsize * 20)*1.1);
-        document.getElementById('surround').style.height = surround + 'px';
-        document.getElementById('surround').style.width = surround + 'px';
+        var surround = ((mapsize * pixelsize) * 1.1);
+        $("#surround").css({"height":surround+"px","width":surround+"px"});
+        //document.getElementById('surround').style.height = surround + 'px';
+        //document.getElementById('surround').style.width = surround + 'px';
+    }
+}
+
+function unexplored(){
+    var current = (((user[username1].yaxis-1)*mapsize)+user[username1].xaxis)-1;
+    user[username1].mapping[current]=true;
+    for (x=0;x<user[username1].mapping.length;x++){
+        zoneid = "unexplored"+x;
+        var myNode = document.getElementById(zoneid);
+        if (user[username1].mapping[x]==false){
+            myNode.style.visibility = "visible";
+        }
+        else{
+            myNode.style.visibility = "hidden";
+
+        }
     }
 }

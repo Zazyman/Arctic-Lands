@@ -9,9 +9,7 @@
 }
 /*This is the controller of the North, East, South and West buttons*/
 .directionbutton {
-    width: 50px;
-    height: 50px;
-    margin: 10px 10px 10px 10px;
+    margin: 3px;
 }
 /*The grey box surrounding the map*/
 #surround {
@@ -36,34 +34,30 @@
 }
 /*This aligns the map and the section of writing to the right*/
 #wrapper {
-     padding: 10px 0px 10px 0px;
-     display: flex;
+    padding: 10px;
+    display: flex;
+    border: 2px solid black;
+    margin: 5px;
+    height: 600px;
  }
 /*This defines the box of writing to the right*/
-#zoneinfo {
+#zonebuildings {
     flex: 1;
-    border: 1px solid black;
-    width: 98%;
-    height: 70%;
-    background: lightblue;
+    width: inherit;
 }
 /*The solid black border around the map and buttons*/
 #infowrapper {
-    padding: 10px 10px 10px 10px;
     margin-left: 10px;
-    width: 45%;
-    display: flex;
-    border: 3px solid black;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+    padding: 2px 5px 2px 5px;
+    border: 2px solid black;
+    width: 400px;
 }
 /*This is the smaller info window below the first*/
 #infowindow {
-    height: 10%;
+    height: 50px;
     border: 1px solid black;
-    width: 98%;
-    margin:  5px 0px 5px 0px;
+    width: auto;
+    margin-top: 5px;
 }
 /* This is the heading image details*/
 #headingimage {
@@ -78,6 +72,9 @@
     rgba(170, 170, 170, 1)33%,
     rgba(170, 170, 170, 1)66%,
     rgba(255, 255, 255, 0)100%);
+    overflow: hidden;
+    height: 20px;
+    flex-direction: column;
 }
 /*This is the red box at the bottom giving the location of all players currently*/
 #testing {
@@ -86,21 +83,151 @@
 /*This is the window where actions can occur*/
 #actionwrapper {
     border: 2px solid black;
-    background: grey;
-    width: 35%;
+    background: peachpuff;
+    width: 350px;
     display: flex;
     flex-direction: column;
     margin-left: 10px;
-    align-content: center;
+    /*align-content: center;*/
     align-items: center;
-    padding: 2%;
 }
 /*This is the button pressed to search*/
 #searchbutton {
     width: 100px;
 }
+/*This holds the backpack holder and the image so that they overlap*/
+#backpackwrapper{
+    width: 250px;
+    height: 50px;
+    position: relative;
+    margin: 10px;
+}
+/*This is the div that holds the players object images*/
+#backpack{
+    width: 200px;
+    height: 28px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+/*This is the image of the backpack*/
+#backpackpic{
+    position: absolute;
+}
+/*This is the position of the player and selected zone images (Used to make them overlap)*/
+.mapimages {
+    position: relative;
+    display: inline-block;
+    margin-right: -20px;
+    z-index: 5;
+}
+/*This is the objects found on the ground and in the bags apearance*/
+.foundobject {
+    margin-left: 5px;
+}
+/*This is the wrapper for the zone items*/
+#zonewrapper{
+    position: relative;
+}
+/*This is the container for any items on the ground*/
+#zoneitemholder{
+    width: 285px;
+    height: 135px;
+    position: absolute;
+    top: 28px;
+    left: 25px;
+}
+/*This is the image for the ground*/
+#groundpic{
+    position: absolute;
+}
+/*This is the wrapper for the players stamina*/
+#staminawrapper{
+    border: 1px solid black;
+    width: 200px;
+    height: 20px;
+    float: right;
+}
+/*This is the image properties for the stamina stars*/
+#staminaimage{
 
-
-#removesearch {
+}
+/*This is the refresh stamina button*/
+#staminarefresh{
+    width: 150px;
+    height: 20px;
+    float: right;
+    margin-right: 5px;
+}
+/*This wraps all the information about the building*/
+.buildingdivwrapper{
+    border: 1px solid black;
+    width: inherit;
+    height: 14px;
+    font-size: 13px;
+}
+/*This holds the buildings Name*/
+.buildingtext{
+    height:inherit;
     width: 100px;
+    font-size: inherit;
+    border-right: 1px dashed grey;
+    position: inherit;
+    float: left;
+}
+/*This is the first building material required*/
+.buildingmatt1{
+    border-right: 1px dashed grey;
+    width: 70px;
+    height:inherit;
+    position: inherit;
+    font-size: inherit;
+    float: left;
+}
+/*This is the second building material required*/
+.buildingmatt2{
+    border-right: 1px dashed blue;
+    width: 70px;
+    height:inherit;
+    position: inherit;
+    font-size: inherit;
+    float: left;
+}
+/*This is the second building material required*/
+.buildingmatt2{
+    border-right: 1px dashed red;
+    width: 70px;
+    height:inherit;
+    position: inherit;
+    font-size: inherit;
+    float: left;
+}
+/*This is the building button*/
+.buildingbutton{
+    height: 12px;
+    width: 13px;
+    font-size: 10px;
+    float: right;
+    background-color: lightgreen;
+    align-content: center;
+}
+/*This gives information about what just happened*/
+#Information{
+    border: 1px solid gray;
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    margin: 5px;
+}
+/*This goes on either side of the page to format it for any size window*/
+.edging{
+    width: 10%;
+    background-color: gray;
+    height: 600px;
+    padding: 10px 0 10px 0;
+}
+/*This wraps the entire page and aligns the centre*/
+#wholepage{
+    display: flex;
+    align-items: center;
 }

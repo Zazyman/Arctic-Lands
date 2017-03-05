@@ -1,81 +1,103 @@
-//This is the random number based on the zone environment and depletion (different results will call different items)
-var itemnumber = 0;
+//This is the maximum number of searches a zone allows before depletion
+var maxsearches = 20;
+//This is the minimum number of searches a zone allows before depletion
+var minsearches = 5;
+//This is for different responses
+var responsecounter = false;
 
 //This is the function for when the player presses the search button
 function searchbutton(){
-    itemrandomiser();
+    if (staminacheck() == true) {
+        user[username1].stamina -=1;
+        itemrandomiser();
+        refreshimages();
+    }
+    else{
+        nostamina();
+    }
 }
 
 //This function defines what item is found based on the zone type
 function itemrandomiser(){
     var zonelocation = (((user[username1].yaxis-1)*mapsize)+user[username1].xaxis)-1;
+    var founditem = "ZZNone";
+    var itemnumber = (Math.floor(Math.random()*10));
     if (map[zonelocation].depleted == false) {
-        //This is used to give a maximum for the random number generator
-        var generatornum;
-        switch (map[zonelocation].environ) {
-            case 0:
-                generatornum = 5;
-                break;
-            case 1:
-                generatornum = 10;
-                break;
-            case 2:
-                generatornum = 10;
-                break;
-            default:
-                generatornum = 1;
-        }
-        //This generates a random number based on the zone environment
-        itemnumber = (Math.floor(Math.random() * generatornum)+1);
         map[zonelocation].searchcount += 1;
+        var depletecheck = (Math.floor(Math.random() * (maxsearches-minsearches))+minsearches)/map[zonelocation].searchcount;
+        if (depletecheck < 1){
+            map[zonelocation].depleted = true;
+        }
+        founditem = enviroment[map[zonelocation].environ].items[itemnumber];
     }
     else {
         //If the zone is depleted then no items are returned
-        itemnumber = 0;
+        user[username1].stamina +=1;
+        founditem = "Depleted";
+
     }
     //This switch statement places the item that is found based on the random number
-    switch(itemnumber) {
-        case 0:
-            founditem = "Depleted";
-        case 1:
-        case 2:
-            founditem = "None";
-            break;
-        case 3:
-        case 4:
-            founditem = "Wood";
-            break;
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-            founditem = "Snow";
-            break;
-        default:
-            founditem = "None";
+    if (founditem == "Depleted") {
+        $("#Information").css("color", "red").text("Zone is depleted");
     }
-    searchcheckz(founditem);
-}
-
-//This function drops the item onto the floor once found
-function searchcheckz(founditem){
-    if (founditem == "None"){
-        alert("Nothing was found");
+    else if (founditem == "ZZNone") {
+        if (responsecounter == false) {
+            $("#Information").css("color", "black").text("No items found");
+            responsecounter = true;
+        }
+        else {
+            $("#Information").css("color", "blue").text("Found nothing again!");
+            responsecounter = false;
+        }
     }
-    else if (founditem == "Depleted"){
-        alert("The zone is depleted");
-    }
-    else {
+    else{
         var tempzoneid = (((user[username1].yaxis - 1) * mapsize) + user[username1].xaxis) - 1;
         map[tempzoneid].fitems.push(founditem);
-        alert("You have found "+founditem);
+        $("#Information").css("color", "green").text("You found: " + founditem);
     }
+    refreshimages();
 }
 
-//This function is used to remove the most recent item
-function removesearch(){
+//This is the option to add item images to the screen
+function addimages() {
+    var myNode = document.getElementById("zoneitemholder");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
     var zonelocation = (((user[username1].yaxis-1)*mapsize)+user[username1].xaxis)-1;
-    map[zonelocation].fitems.pop();
-
+    map[zonelocation].fitems.sort();
+    //This cycles through the items on the zone
+    for (x=0;x<(map[zonelocation].fitems.length);x++){
+        //This make the zone item name into a single variable for ease
+        var testingname = map[zonelocation].fitems[x];
+        //This checks that the item name is a real item
+        if (typeof item[testingname] !== 'undefined'){
+            var imagename = zonelocation+"+"+x+"?"+testingname;
+            $("#zoneitemholder").append("<img id='"+imagename+"' class='foundobject' src='"+item[testingname].icon+"'>")
+            //This causes the item to be picked up when clicked on
+            document.getElementById(imagename).addEventListener("click", function () {
+                //This seperates the images id into the information regarding its object type
+                var idlength2 = this.id.indexOf("?");
+                //This creates the array ID
+                var thisitem = this.id.slice(idlength2+1);
+                bagchecker();
+                if (pickupitem == true) {
+                    var position = user[username1].fitems.indexOf("ZZNone");
+                    user[username1].fitems.splice(position, 1, thisitem);
+                    //This seperates the images id into the information regarding its point on the array and map object
+                    var idlength = this.id.indexOf("+");
+                    //This creates the array ID
+                    var temparrayid = parseInt(this.id.slice(idlength, idlength2));
+                    //This creates the map ID
+                    var tempzoneid = parseInt(this.id.slice(0, idlength));
+                    //This deletes the item from the maps item list
+                    map[tempzoneid].fitems.splice(temparrayid, 1);
+                    refreshimages();
+                }
+                else{
+                    alert("There is no room in your bag");
+                }
+            });
+        }
+    }
 }

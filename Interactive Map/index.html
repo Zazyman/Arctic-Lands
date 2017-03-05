@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="map.css">
+    <script src="jquery-3.1.1.min.js"></script>
     <script src="map.js"></script>
     <script src="user_creation.js"></script>
     <script src="user_movement.js"></script>
@@ -10,6 +11,8 @@
     <script src="zone_info.js"></script>
     <script src="items.js"></script>
     <script src="image_stats.js"></script>
+    <script src="stamina.js"></script>
+    <script src="buildings.js"></script>
     <title>Arctic Land Map</title>
 </head>
 <body onload="onloading()">
@@ -18,38 +21,64 @@
 </header>
 <nav id="navwindow">
     The navigator window with stuff in it
+    <div id="staminawrapper">
+
+    </div>
+    <button id="staminarefresh" onclick="staminarefresh()">Refresh Stamina</button>
 </nav>
 <article>
+    <div id="wholepage">
+        <aside class="edging">
+
+        </aside>
     <section id="wrapper">
-        <section id="mapwrapper">
-            <button class="directionbutton" id="butnorth" onclick="movedirection(0,-1)">North</button>
-            <section id="wrapperEW">
-                <button class="directionbutton" id="butwest" onclick="movedirection(-1,0)">West </button>
-                <section id="surround">
-                    <section id="start">
+        <section id="col1">
+            <section id="mapwrapper">
+                <img src="images/arrowup.png" class="directionbutton" id="butnorth" onclick="movedirection(0,-1,this)">
+                <section id="wrapperEW">
+                    <img src="images/arrowleft.png" class="directionbutton" id="butwest" onclick="movedirection(-1,0,this)">
+                    <section id="surround">
+                        <section id="start">
+                        </section>
                     </section>
+                    <img src="images/arrowright.png" class="directionbutton" id="buteast" onclick="movedirection(1,0,this)">
                 </section>
-                <button class="directionbutton" id="buteast" onclick="movedirection(1,0)">East</button>
+                <img src="images/arrowdown.png" class="directionbutton" id="butsouth" onclick="movedirection(0,1,this)">
             </section>
-            <button class="directionbutton" id="butsouth" onclick="movedirection(0,1)">South</button>
+            <section id="infowindow">
+                Information when a zone is clicked on will appear here
+            </section>
         </section>
         <section id="actionwrapper">
-            Actions that can be performed will go here <br />
+            <section id="Information">
+                Recent Actions
+            </section>
             <button id="searchbutton" onclick="searchbutton()">Search</button>
             <br />
-            <button id="removesearch" onclick="removesearch()">Remove</button>
+            Backpack items
+            <div id="backpackwrapper">
+                <img src="images/Backpack.png" id="backpackpic">
+                <div id="backpack">
+                </div>
+            </div>
+            Current zone items
+            <div id="zonewrapper">
+                <img src="images/Ground2.png">
+                <div id="zoneitemholder">
+
+                </div>
+            </div>
         </section>
        <section id="infowrapper">
-            <aside id="zoneinfo">
-                Information when a zone is clicked on will appear here
-            </aside>
-            <aside id="infowindow">
-                Information about the zone will appear here on roll over
+            <aside id="zonebuildings">
+                <strong>Building options here</strong> (eventually)
             </aside>
         </section>
     </section>
-</article>
-<article id="testing">
+        <aside class="edging">
+
+        </aside>
+    </div>
 </article>
 </body>
 </html>

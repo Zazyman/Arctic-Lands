@@ -8,6 +8,8 @@ function onloading(){
     zoneattributes();
     //This creates NPCs as real players don't exist at this time
     NPCcreation(12);
-    //This is so that I can currently see all the NPC locations to cross reference
-    npcmovement();
+    //This creates the starting buildings
+    startingbuildings();
+    //This updates all the HTML images
+    refreshimages();
 }
