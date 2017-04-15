@@ -145,6 +145,20 @@ function actionchecker() {
                         $("#itemactions").append("<option value='Wood'>Create a torch</option>");
                     }
                     break;
+                case 2:
+                    //Prevents dupes
+                    var myNode = document.getElementById("itemactions");
+                    var duplicates1 = 0;
+                    for (var i = 0; i < myNode.options.length; ++i) {
+                        if (myNode.options[i].value == "Snow") {
+                            duplicates1 += 1;
+                        }
+                    }
+                    if (duplicates1 < 1) {
+                        //Action for snow
+                        $("#itemactions").append("<option value='Snow'>Create a snowman</option>");
+                    }
+
             }
         }
     }
