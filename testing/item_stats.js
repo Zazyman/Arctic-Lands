@@ -1,28 +1,33 @@
-function item(icon, actions, actionid, information, fuel){
-    this.icon = icon;
-    this.actions = actions;
-    this.actionid = actionid;
-    this.information = information;
-    this.fuel = fuel
+function item(icon, actions, actionid, information, fuel) {
+    this.icon = icon; //the image
+    this.actions = actions; //if the item has a related action
+    this.actionid = actionid; //unique ID for each action
+    this.information = information; //Generic information
+    this.fuel = fuel //fuel added when placed onto fire (can be negative)
 }
 
 item["Wood"] = new item("items/stickicon2.png", true, 1, "A small stick, it's great for building fires.", 1);
-item["Snow"] = new item("items/snow.png", false, 0, "A ball of snow, not much use to keep you warm and it's not like there's a shortage.", -1);
+item["Snow"] = new item("items/snow.png", true, 2, "A ball of snow, not much use to keep you warm and it's not like there's a shortage.", -1);
 item["Torch"] = new item("items/torch2.png", false, 0, "A flaming torch, giver of life, the warming glow draws you close.", 1);
 item["ZZNone"] = new item("items/Empty.png", false, 0, "There's nothing here.", 0);
+item["Snowman"] = new item("items/torch2.png", false, 0, "So you did want to build a Snowman!", -2);
 
 //ITEM ACTIONS//
 
-function itemvalue(){
+function itemvalue() {
     $("#loadingscreen").css("visibility", "visible");
     var act = document.getElementById("itemactions").value;
-    switch (act){
+    switch (act) {
         case "Wood":
             maketorch();
+            break;
+        case "Snow":
+            makesnowman();
             break;
     }
     $("#loadingscreen").css("visibility", "hidden");
 }
+
 
 function maketorch(){
     if (d.m.buildings[3] == building[3].staminacost) {
@@ -47,6 +52,33 @@ function maketorch(){
         alert("You need a fire to do that");
     }
 }
+
+//Snowman creation
+
+function makesnowman() {
+    //find the first snow and removes it
+    var itemloc1 = d.u.fitems.indexOf("Snow");
+    d.u.fitems.splice(itemloc1, 1, "ZZNone");
+    //Looks for second snow
+    var itemloc2 = d.u.fitems.indexOf("Snow");
+    if (itemloc2 == -1) {
+        //not enough snow, alerts the player
+        alert("You need two Snow to do that!");
+        //replaces the snow
+        d.u.fitems.splice(itemloc1, 1, "Snow");
+        //ajax_postarray(d.u.fitems, "fitems", "ingameavatars", d.u.username, "../php_query/post_array.php");
+
+    } else {
+        //creates the snowman and alerts the player
+        d.u.fitems.splice(itemloc1, 1, "Snowman");
+        d.u.fitems.splice(itemloc2, 1, "ZZNone")
+        //ajax_postarray(d.u.fitems, "fitems", "ingameavatars", d.u.username, "../php_query/post_array.php");
+        refreshzone();
+        alert("You made a Snowman!")
+    }
+}
+
+
 
 //ENVIROMENT//
 
